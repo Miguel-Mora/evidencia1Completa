@@ -11,7 +11,7 @@ public class Venta {
         this.vehiculo = vehiculo;
         this.apellido = apellido;
         this.nombre = nombre;
-        this.nombre = documento;
+        this.documento = documento;
     }
 
     // Método toString para representar la venta en texto
