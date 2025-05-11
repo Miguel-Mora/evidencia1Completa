@@ -12,7 +12,8 @@ public class Concesionario {
 
     // Método para realizar una venta de un vehículo
     public void realizarVenta(String codigoVehiculo, double monto, String apellido, String nombre, String documento) {
-        Vehiculo vehiculoVendido = new Vehiculo(codigoVehiculo, nombre, documento, 0, monto);
+        Vehiculo vehiculoVendido = null;
+
         // Buscar el vehículo en el inventario
         for (Vehiculo v : inventario) {
             if (v.getCodigo().equals(codigoVehiculo)) {
@@ -20,11 +21,16 @@ public class Concesionario {
                 break;
             }
         }
-        // Si se encuentra el vehículo, se registra la venta
+
+        // Registrar la venta si se encuentra el vehículo
         if (vehiculoVendido != null) {
-            ventas.add(new Venta(monto, vehiculoVendido, apellido, nombre, documento));
+            Venta nuevaVenta = new Venta(monto, vehiculoVendido, apellido, nombre, documento);
+            ventas.add(nuevaVenta);
             inventario.remove(vehiculoVendido);
-            System.out.println("Venta realizada: " + nombre + " " + apellido + " ha comprado " + vehiculoVendido.getMarca());
+
+            System.out.println("Venta realizada (ID " + nuevaVenta.getIdVenta() + "): " +
+                    nombre + " " + apellido + " ha comprado " +
+                    vehiculoVendido.getMarca() + " (" + codigoVehiculo + ")");
         } else {
             System.out.println("Error: Vehículo con código " + codigoVehiculo + " no encontrado.");
         }
@@ -33,6 +39,9 @@ public class Concesionario {
     // Método para mostrar el inventario actual
     public void mostrarInventario() {
         System.out.println("Inventario actual:");
+        if (inventario.isEmpty()) {
+            System.out.println("No hay vehículos disponibles.");
+        }
         for (Vehiculo v : inventario) {
             System.out.println(v);
         }
@@ -41,8 +50,12 @@ public class Concesionario {
     // Método para mostrar el historial de ventas
     public void mostrarVentas() {
         System.out.println("Ventas realizadas:");
+        if (ventas.isEmpty()) {
+            System.out.println("No se han registrado ventas.");
+        }
         for (Venta v : ventas) {
             System.out.println(v);
         }
     }
 }
+

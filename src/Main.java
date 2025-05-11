@@ -3,10 +3,10 @@ public class Main {
         // Crear un concesionario
         Concesionario concesionario = new Concesionario();
 
-        // Agregar vehículos al inventario
-        concesionario.agregarVehiculo(new Vehiculo("001", "Toyota", "Auto", 2020, 0));
-        concesionario.agregarVehiculo(new Vehiculo("002", "Chevrolet", "Camioneta", 2018, 50000));
-        concesionario.agregarVehiculo(new Vehiculo("003", "Suzuki", "Motocicleta", 2019, 10000));
+        // Agregar vehículos al inventario (usando subclases especializadas)
+        concesionario.agregarVehiculo(new Auto("001", "Toyota", 2020, 0));
+        concesionario.agregarVehiculo(new Camioneta("002", "Chevrolet", 2018, 50000));
+        concesionario.agregarVehiculo(new Motocicleta("003", "Suzuki", 2019, 10000));
 
         // Mostrar el inventario
         concesionario.mostrarInventario();
@@ -19,3 +19,4 @@ public class Main {
         concesionario.mostrarVentas();
     }
 }
+
